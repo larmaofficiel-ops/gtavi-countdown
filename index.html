@@ -1,0 +1,125 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GTA VI — LARLAR | GAMES</title>
+<style>
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: Arial, sans-serif;
+  color: white;
+  background: linear-gradient(145deg,
+    #160b34, #662177, #f04c8b, #ffad67);
+}
+main {
+  text-align: center;
+  padding: 30px 15px;
+  width: 100%;
+}
+h1 {
+  font-size: clamp(55px, 12vw, 110px);
+  margin: 0;
+  text-shadow: 0 0 35px #ff5aa8;
+}
+h2 {
+  letter-spacing: 5px;
+  color: #ffd3e9;
+}
+.timer {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin: 35px auto;
+}
+.unit {
+  background: rgba(15, 8, 42, .8);
+  border: 2px solid #ff82cf;
+  border-radius: 15px;
+  padding: 20px 10px;
+  min-width: 100px;
+  box-shadow: 0 0 20px #fa4ba855;
+}
+.number {
+  font-size: clamp(32px, 6vw, 65px);
+  font-weight: bold;
+  font-variant-numeric: tabular-nums;
+}
+.label {
+  font-size: 12px;
+  letter-spacing: 2px;
+  margin-top: 10px;
+}
+footer {
+  margin-top: 45px;
+  font-weight: bold;
+  letter-spacing: 4px;
+}
+</style>
+</head>
+<body>
+<main>
+  <h1>GTA VI</h1>
+  <h2>VICE CITY COUNTDOWN</h2>
+  <p>🌴 LEONIDA VOUS ATTEND 🌴</p>
+
+  <div class="timer">
+    <div class="unit">
+      <div class="number" id="days">00</div>
+      <div class="label">JOURS</div>
+    </div>
+    <div class="unit">
+      <div class="number" id="hours">00</div>
+      <div class="label">HEURES</div>
+    </div>
+    <div class="unit">
+      <div class="number" id="minutes">00</div>
+      <div class="label">MINUTES</div>
+    </div>
+    <div class="unit">
+      <div class="number" id="seconds">00</div>
+      <div class="label">SECONDES</div>
+    </div>
+  </div>
+
+  <p id="status">SORTIE : 19 NOVEMBRE 2026</p>
+  <footer>LARLAR | GAMES</footer>
+</main>
+
+<script>
+const target = new Date("2026-11-19T00:00:00+01:00");
+
+function updateCountdown() {
+  let diff = Math.max(0, target.getTime() - Date.now());
+  const total = Math.floor(diff / 1000);
+
+  const values = {
+    days: Math.floor(total / 86400),
+    hours: Math.floor(total % 86400 / 3600),
+    minutes: Math.floor(total % 3600 / 60),
+    seconds: total % 60
+  };
+
+  for (const [id, value] of Object.entries(values)) {
+    document.getElementById(id).textContent =
+      String(value).padStart(2, "0");
+  }
+
+  if (diff === 0) {
+    document.getElementById("status").textContent =
+      "🔥 C'EST LE JOUR J ! 🔥";
+  }
+}
+
+updateCountdown();
+setInterval(updateCountdown, 250);
+</script>
+</body>
+</html>
