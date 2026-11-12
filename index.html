@@ -22,12 +22,20 @@ body {
   margin: 0;
   min-height: 100vh;
   font-family: Arial, Helvetica, sans-serif;
-  color: #fff;
+  color: white;
   overflow-x: hidden;
+
   background:
-    radial-gradient(ellipse at 50% 75%,
-      #ffbd65 0%, #f46a92 22%,
-      #a23d9b 48%, #281044 85%);
+    linear-gradient(
+      rgba(19, 5, 42, 0.35),
+      rgba(32, 5, 55, 0.60)
+    ),
+    url("vice-city-bg.jpg");
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 }
 
 .scene {
