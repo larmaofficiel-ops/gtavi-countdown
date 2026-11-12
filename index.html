@@ -2,130 +2,320 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>GTA VI — LARLAR | GAMES</title>
+<meta name="theme-color" content="#ed4b9b">
 <meta property="og:type" content="website">
 <meta property="og:title" content="GTA VI — LARLAR | GAMES">
 <meta property="og:description" content="🌴 Le compte à rebours GTA VI est lancé ! Jours, heures, minutes et secondes en direct.">
 <meta property="og:image" content="https://larmaofficiel-ops.github.io/gtavi-countdown/gta6-discord.png">
 <meta property="og:url" content="https://larmaofficiel-ops.github.io/gtavi-countdown/">
-<meta name="theme-color" content="#ed4b9b">
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>GTA VI — LARLAR | GAMES</title>
+
 <style>
-* { box-sizing: border-box; }
+* {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
+  min-height: 100vh;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #fff;
+  overflow-x: hidden;
+  background:
+    radial-gradient(ellipse at 50% 75%,
+      #ffbd65 0%, #f46a92 22%,
+      #a23d9b 48%, #281044 85%);
+}
+
+.scene {
+  position: relative;
+  isolation: isolate;
   min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-family: Arial, sans-serif;
-  color: white;
-  background: linear-gradient(145deg,
-    #160b34, #662177, #f04c8b, #ffad67);
+  padding: 45px 16px;
+  overflow: hidden;
 }
-main {
+
+.sun {
+  position: absolute;
+  z-index: -2;
+  width: min(75vw, 540px);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  top: 23%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: linear-gradient(
+    #fff4aa, #ffae75 48%, #ff4b9d);
+  box-shadow: 0 0 110px #ff8d8a;
+  opacity: .75;
+}
+
+.palm {
+  position: absolute;
+  z-index: -1;
+  bottom: -45px;
+  font-size: clamp(120px, 22vw, 300px);
+  filter: brightness(0) drop-shadow(0 0 15px #2b103b);
+  opacity: .65;
+  user-select: none;
+}
+
+.palm.left {
+  left: -55px;
+  transform: rotate(-18deg);
+}
+
+.palm.right {
+  right: -55px;
+  transform: scaleX(-1) rotate(-18deg);
+}
+
+.panel {
+  width: min(100%, 980px);
+  padding: 48px 22px;
   text-align: center;
-  padding: 30px 15px;
-  width: 100%;
+  border: 1px solid #ffb4e6a0;
+  border-radius: 28px;
+  background: rgba(24, 9, 53, .70);
+  backdrop-filter: blur(14px);
+  box-shadow:
+    0 0 45px #ff48a655,
+    inset 0 0 35px #ff79d015;
 }
+
+.eyebrow {
+  font-size: 13px;
+  letter-spacing: 6px;
+  color: #ffb4e8;
+}
+
 h1 {
-  font-size: clamp(55px, 12vw, 110px);
-  margin: 0;
-  text-shadow: 0 0 35px #ff5aa8;
+  margin: 15px 0 0;
+  font-size: clamp(65px, 13vw, 145px);
+  line-height: 1;
+  font-weight: 900;
+  letter-spacing: -5px;
+  color: #fff;
+  text-shadow:
+    0 0 12px #ff72cb,
+    0 0 45px #ff349b;
 }
+
+h1 span {
+  color: #ff8dcf;
+}
+
 h2 {
+  margin: 18px 0;
+  font-size: clamp(14px, 3vw, 25px);
   letter-spacing: 5px;
-  color: #ffd3e9;
+  color: #ffd5ed;
 }
+
+.subtitle {
+  color: #ffe3f1;
+  font-size: 15px;
+}
+
 .timer {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 12px;
-  margin: 35px auto;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+  margin: 42px auto 30px;
 }
+
 .unit {
-  background: rgba(15, 8, 42, .8);
-  border: 2px solid #ff82cf;
-  border-radius: 15px;
-  padding: 20px 10px;
-  min-width: 100px;
-  box-shadow: 0 0 20px #fa4ba855;
+  min-width: 0;
+  padding: 22px 8px;
+  border: 2px solid #ff78cf;
+  border-radius: 18px;
+  background: linear-gradient(
+    160deg, #431c66e8, #160a35f0);
+  box-shadow:
+    0 0 15px #ff4aaf70,
+    inset 0 0 20px #ff54b020;
 }
+
 .number {
-  font-size: clamp(32px, 6vw, 65px);
-  font-weight: bold;
+  font-size: clamp(30px, 6vw, 70px);
+  font-weight: 900;
   font-variant-numeric: tabular-nums;
+  color: #fff;
+  text-shadow:
+    0 0 8px #ffb8f2,
+    0 0 22px #ff4dbd,
+    0 0 38px #ff2299;
 }
+
+.number.tick {
+  animation: pulse .38s ease-out;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1.13);
+    color: #ff8bdc;
+  }
+  100% {
+    transform: scale(1);
+    color: #fff;
+  }
+}
+
 .label {
-  font-size: 12px;
+  margin-top: 12px;
+  font-size: clamp(9px, 1.4vw, 13px);
   letter-spacing: 2px;
-  margin-top: 10px;
+  color: #ffc4eb;
 }
+
+.status {
+  font-size: 14px;
+  letter-spacing: 2px;
+  color: #ffe2a9;
+}
+
 footer {
   margin-top: 45px;
-  font-weight: bold;
-  letter-spacing: 4px;
+  font-size: clamp(18px, 3vw, 28px);
+  font-weight: 900;
+  letter-spacing: 5px;
+  color: #fff;
+  text-shadow:
+    0 0 12px #ff67cb,
+    0 0 30px #ff3ba7;
+}
+
+footer small {
+  display: block;
+  margin-top: 12px;
+  font-size: 10px;
+  font-weight: normal;
+  letter-spacing: 3px;
+  color: #ffd1ed;
+}
+
+@media (max-width: 600px) {
+  .panel {
+    padding: 38px 12px;
+  }
+
+  .timer {
+    gap: 6px;
+  }
+
+  .unit {
+    padding: 17px 3px;
+    border-radius: 11px;
+  }
+
+  .label {
+    letter-spacing: 0;
+  }
+
+  .eyebrow {
+    letter-spacing: 3px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .number.tick {
+    animation: none;
+  }
 }
 </style>
 </head>
+
 <body>
-<main>
-  <h1>GTA VI</h1>
-  <h2>VICE CITY COUNTDOWN</h2>
-  <p>🌴 LEONIDA VOUS ATTEND 🌴</p>
+<div class="scene">
 
-  <div class="timer">
-    <div class="unit">
-      <div class="number" id="days">00</div>
-      <div class="label">JOURS</div>
-    </div>
-    <div class="unit">
-      <div class="number" id="hours">00</div>
-      <div class="label">HEURES</div>
-    </div>
-    <div class="unit">
-      <div class="number" id="minutes">00</div>
-      <div class="label">MINUTES</div>
-    </div>
-    <div class="unit">
-      <div class="number" id="seconds">00</div>
-      <div class="label">SECONDES</div>
-    </div>
-  </div>
+  <div class="sun"></div>
+  <div class="palm left" aria-hidden="true">🌴</div>
+  <div class="palm right" aria-hidden="true">🌴</div>
 
-  <p id="status">SORTIE : 19 NOVEMBRE 2026</p>
-  <footer>LARLAR | GAMES</footer>
-</main>
+  <main class="panel">
+    <div class="eyebrow">WELCOME TO LEONIDA</div>
+
+    <h1>GTA <span>VI</span></h1>
+    <h2>VICE CITY COUNTDOWN</h2>
+
+    <p class="subtitle">
+      🌴 LE COMPTE À REBOURS EST LANCÉ 🌴
+    </p>
+
+    <div class="timer" role="timer">
+      <div class="unit">
+        <div class="number" id="days">00</div>
+        <div class="label">JOURS</div>
+      </div>
+
+      <div class="unit">
+        <div class="number" id="hours">00</div>
+        <div class="label">HEURES</div>
+      </div>
+
+      <div class="unit">
+        <div class="number" id="minutes">00</div>
+        <div class="label">MINUTES</div>
+      </div>
+
+      <div class="unit">
+        <div class="number" id="seconds">00</div>
+        <div class="label">SECONDES</div>
+      </div>
+    </div>
+
+    <p class="status" id="status">
+      SORTIE : 19 NOVEMBRE 2026
+    </p>
+
+    <footer>
+      LARLAR | GAMES
+      <small>THE NEXT CHAPTER BEGINS</small>
+    </footer>
+  </main>
+</div>
 
 <script>
 const target = new Date("2026-11-19T00:00:00+01:00");
 
 function updateCountdown() {
-  let diff = Math.max(0, target.getTime() - Date.now());
-  const total = Math.floor(diff / 1000);
+  const diff = Math.max(0, target.getTime() - Date.now());
+  const total = Math.ceil(diff / 1000);
 
   const values = {
     days: Math.floor(total / 86400),
-    hours: Math.floor(total % 86400 / 3600),
-    minutes: Math.floor(total % 3600 / 60),
+    hours: Math.floor((total % 86400) / 3600),
+    minutes: Math.floor((total % 3600) / 60),
     seconds: total % 60
   };
 
   for (const [id, value] of Object.entries(values)) {
-    document.getElementById(id).textContent =
-      String(value).padStart(2, "0");
+    const element = document.getElementById(id);
+    const formatted = String(value).padStart(2, "0");
+
+    if (element.textContent !== formatted) {
+      element.textContent = formatted;
+      element.classList.remove("tick");
+      void element.offsetWidth;
+      element.classList.add("tick");
+    }
   }
 
   if (diff === 0) {
     document.getElementById("status").textContent =
-      "🔥 C'EST LE JOUR J ! 🔥";
+      "🔥 C'EST LE JOUR J ! BIENVENUE À VICE CITY 🔥";
   }
 }
 
 updateCountdown();
-setInterval(updateCountdown, 250);
+setInterval(updateCountdown, 200);
 </script>
 </body>
 </html>
